@@ -8,4 +8,6 @@ public class Cliente {
     public void adicionaPedido(Pedido pedido){
         
     }
+}
     
+
