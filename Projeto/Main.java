@@ -6,6 +6,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         Teatro teatro = new Teatro();
         int opcao = 0;
+        //Criar uma lista para os espetáculos?
 
         do {
             System.out.println("\n*** MACK THEATHER ***");
@@ -18,8 +19,29 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    teatro.cadastrarEspetaculo();
+                    System.out.println("\n*** CADASTRO DE ESPETÁCULO ***");
+                    
+                    System.out.print("Nome do Espetáculo: ");
+                    String nome = input.nextLine();
+                    
+                    System.out.print("Data: ");
+                    String data = input.nextLine();
+
+                    System.out.print("Hora: ");
+                    String hora = input.nextLine();
+
+                    System.out.print("Preço da Entrada Inteira: ");
+                    double preco = input.nextDouble();
+
+                    //Criação do objeto Espetaculo com o construtor
+                    Espetaculo novoEspetaculo = new Espetaculo(nome, data, hora, preco);
+
+                    //Armazenar o espetáculo na lista
+
+                    System.out.println(">>> Espetáculo cadastrado com sucesso! <<<");
+                    System.out.println(">>> Retornar ao menu principal <<<");
                     break;
+                    
                 case 2:
                     teatro.cadastrarCliente();
                     break;
