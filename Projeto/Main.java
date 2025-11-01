@@ -7,6 +7,7 @@ public class Main {
         Teatro teatro = new Teatro();
         int opcao = 0;
         //Criar uma lista para os espetáculos?
+        //Criar uma lista para os clientes?
 
         do {
             System.out.println("\n*** MACK THEATHER ***");
@@ -61,7 +62,40 @@ public class Main {
                     break;
                     
                 case 3:
-                    teatro.compraDeEntradas();
+                    //Criar variável acumuladora para o preço final?
+                    
+                    System.out.println("\n*** VENDA DE ENTRADAS - ESPETÁCULOS ***");
+
+                    // Mostrar lista de espetáculos (for)
+
+                    System.out.print("Selecione um espetáculo: ");
+                    int num = input.nextInt();
+                    
+                    System.out.print("||| Assentos Disponíveis |||");
+                    // Chamar método nomeEspetaculo.apresentaAssentos()
+                    
+                    System.out.print("Selecione um assento: ");
+                    int assento = input.nextInt(); 
+
+                    System.out.println("||| Tipos de Entrada |||");
+                    System.out.println("1) Inteira");
+                    System.out.println("2) Meia            50% do valor da entrada");
+                    System.out.println("3) Professor       40% do valor da entrada");
+                    System.out.print("Selecione um tipo de entrada: ");
+                    int tipo = input.nextInt(); 
+
+                    // Chamar método -> nomeEspetaculo.novaEntrada(tipo,assento)
+                    // Chamar método -> nomeEspetaculo.marcarAssento(assento)
+
+                    System.out.print("Deseja comprar outra entrada (S/N)?")
+                    String resp = input.nextLine();
+                    // Criar um if 
+
+                    System.out.print("Informe o CPF do Cliente Cadastrado:");
+                    // Verificar o CPF na lista de cientes (for) 
+                    // Usar if, se estiver certo, mostrar o valor da compra
+
+                    System.out.println(">>> Retornar ao menu principal <<<");
                     break;
                 case 4:
                     System.out.println("Sistema encerrado");
