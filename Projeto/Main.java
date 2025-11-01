@@ -43,8 +43,23 @@ public class Main {
                     break;
                     
                 case 2:
-                    teatro.cadastrarCliente();
+                    System.out.println("\n*** CADASTRO DE CLIENTE ***");
+                    
+                    System.out.print("Nome do Cliente: ");
+                    String nome = input.nextLine();
+                    
+                    System.out.print("CPF: ");
+                    String cpf = input.nextLine();
+
+                    //Criação do objeto Cliente com o construtor
+                    Cliente novoCliente = new Cliente(nome, cpf);
+
+                    //Armazenar cliente na lista
+
+                    System.out.println(">>> Cliente cadastrado com sucesso! <<<");
+                    System.out.println(">>> Retornar ao menu principal <<<");
                     break;
+                    
                 case 3:
                     teatro.compraDeEntradas();
                     break;
