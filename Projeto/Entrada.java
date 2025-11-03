@@ -6,8 +6,12 @@ Bárbara Passos RA: 10737885
 
 public class Entrada {
     private int numeroDoAssento;
+    
+    public Entrada (int numeroDoAssento) {
+        this.numeroDoAssento = numeroDoAssento;
+    }
 
-    public double calcularValor() {
-        
+    public double calcularValor(preco) {
+        return preco;
     }
 }

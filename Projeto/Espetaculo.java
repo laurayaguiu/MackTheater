@@ -6,7 +6,6 @@ Bárbara Passos RA: 10737885
 
 public class Espetaculo {
 
-    
     private String nome;
     private String data;
     private String hora;

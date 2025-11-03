@@ -4,8 +4,9 @@ Janaína Passos RA: 10737888
 Bárbara Passos RA: 10737885
 */
 
-public class EntradaMeia {
+public class EntradaMeia extends Entrada{
 
+    @Override
     public double calculaValor() {
         
     }
