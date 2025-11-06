@@ -9,7 +9,8 @@ public class Teatro {
   private Pedido carrinho; // = null
   private Espetaculo espetaculoSelecionado; // = nulll
 
-  // construtuor Teatro()
+  //construtuor Teatro(){
+
   public void novaCompra() {
 
   }
