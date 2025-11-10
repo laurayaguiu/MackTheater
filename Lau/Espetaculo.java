@@ -1,12 +1,17 @@
 public class Espetaculo {
     private String nome;
+    private String data;
+    private String hora;
     private double preco;
     private boolean[] assentos; // array simples com 50 posições
 
-    public Espetaculo(String nome, double preco) {
+    //construtor inicializa 
+    public Espetaculo(String nome, String data, String hora, double preco) {
         this.nome = nome;
+        this.data = data;
+        this.hora = hora;
         this.preco = preco;
-        this.assentos = new boolean[50];
+        this.assentos = new boolean[50]; // já é definido, não é um dado q o cliente coloca
 
         // inicializa todos os assentos como disponíveis (true)
         for (int i = 0; i < assentos.length; i++) {
@@ -15,6 +20,7 @@ public class Espetaculo {
     }
 
     // verifica se o assento está disponível
+    /*
     public boolean estaDisponivel(int numero) {
         if (numero < 1 || numero > 50) {
             return false; // número inválido
@@ -22,6 +28,7 @@ public class Espetaculo {
         int indice = 50 - numero;
         return assentos[indice];
     }
+     */
 
     // marca o assento como ocupado
     public void marcarAssento(int numero) {
@@ -80,15 +87,26 @@ public class Espetaculo {
     // método toString para mostrar informações do espetáculo
     @Override
     public String toString() {
-        return "Espetáculo: " + nome + " | Preço base: R$ " + String.format("%.2f", preco);
+        return String.format("Nome do Espetáculo: %s \n Data: %s \n Hora: %s \n Preço da Entrada Inteira: %.2f ", getNome(), getData(), getHora(), getPreco());
     }
 
     // getters
+    public double getPreco() {
+        return preco;
+    }
+
+    /* 
     public String getNome() {
         return nome;
     }
 
-    public double getPreco() {
-        return preco;
+    public String getData() {
+        return data;
     }
+
+    public String getHora() {
+        return hora;
+    }
+    */
+    
 }

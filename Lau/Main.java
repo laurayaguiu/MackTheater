@@ -3,59 +3,74 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        Espetaculo espetaculo = new Espetaculo("O Fantasma da Ópera", 80.0);
-        Pedido pedido = new Pedido();
-
         int opcao;
+
 
         do {
             System.out.println("\n===== MENU =====");
-            System.out.println("1 - Ver mapa de assentos");
-            System.out.println("2 - Comprar ingresso");
-            System.out.println("3 - Ver pedido atual");
-            System.out.println("0 - Sair");
+            System.out.println("1 - Cadastrar Espetáculo");
+            System.out.println("2 - Cadastrar Cliente");
+            System.out.println("3 - Compra de Entradas");
+            System.out.println("4 - Sair");
             System.out.print("Escolha uma opção: ");
             opcao = sc.nextInt();
 
             switch (opcao) {
                 case 1:
-                    espetaculo.apresentaAssentos();
-                    break;
+                    // Cadastrar Espetáculo
+                    System.out.println("*** CADASTRO DE ESPETÁCULO ***");
+
+                    System.out.print("Nome do Espetáculo: ");
+                    String nome = sc.nextLine();
+
+                    System.out.print("Data: ");
+                    String data = sc.nextLine();
+
+                    System.out.print("Hora: ");
+                    String hora = sc.nextLine();
+
+                    System.out.print("Preço da Entrada Inteira: ");
+                    double preco = sc.nextDouble();
+
+                    // cria o objeto Espetaculo
+                    Espetaculo espetaculo1 = new Espetaculo(nome, data, hora, preco);
 
                 case 2:
-                    System.out.println(espetaculo); // usa o toString()
-                    System.out.print("Digite o número do assento (1–50): ");
-                    int numero = sc.nextInt();
+                   // Cadastrar Cliente
+                   System.out.println("*** CADASTRO DE CLIENTE ***");
+                    
+                   System.out.print("Nome do Cliente: ");
+                   String nomeC = sc.nextLine();
 
-                    System.out.println("Tipos de ingresso:");
-                    System.out.println("1 - Inteira");
-                    System.out.println("2 - Meia");
-                    System.out.println("3 - Professor");
-                    System.out.print("Escolha o tipo: ");
-                    int tipo = sc.nextInt();
+                   System.out.print("CPF: ");
+                   String cpf = sc.nextLine();
 
-                    Entrada entrada = espetaculo.novaEntrada(tipo, numero);
+                   Cliente cliente1 = new Cliente(nomeC, cpf);
 
-                    if (entrada == null) {
-                        System.out.println("❌ Não foi possível emitir o ingresso. Assento ocupado ou tipo inválido.");
-                    } else {
-                        pedido.adicionaEntrada(entrada);
-                        System.out.println("✅ Ingresso adicionado ao pedido!");
-                    }
                     break;
 
                 case 3:
-                    if (pedido.isVazio()) {
-                        System.out.println("🛒 Nenhum ingresso comprado ainda.");
-                    } else {
-                        System.out.println("\n=== Seu Pedido ===");
-                        System.out.println(pedido);
-                    }
+                    //Compra de Entradas
+                    System.out.println("*** VENDA DE ENTRADAS – ESPETÁCULOS ***");
+                    //mostrar espetáculos cadastrados - lista?
+                    System.out.print("Selecione um espetáculo:");
+
+                    //mostar assentos disponíveis
+                    System.out.print("Selecione um assento:");
+                    
+                    // mostrar entradas
+                    System.out.print("Selecione um tipo de entrada:");
+                    System.out.print("Deseja comprar outra entrada (S/N)?");
+                    //which para aparecer até ele esconher N 
+
+                    //pede cpf do cliente e mostra o valor total
+                    System.out.print("Informe o CPF do Cliente Cadastrado:");
+                    System.out.print("Valor Total:");
                     break;
 
-                case 0:
-                    System.out.println("Encerrando o programa...");
+                case 4:
+                    //Sair
+                    System.out.println("Programa encerrado");
                     break;
 
                 default:
