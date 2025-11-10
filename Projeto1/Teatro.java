@@ -1,52 +1,40 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Teatro {
-    private Pedido carrinho;
-    private Espetaculo espetaculoSelecionado; 
-    private ArrayList<Espetaculo> listaEspetaculos;
-    /* 
-    private List<Pedido> carrinhos; // opcional histórico de carrinhos
+    private List<Pedido> carrinhos;
     private Pedido carrinhoAtual;
     private Espetaculo espetaculoSelecionado;
-    private List<Espetaculo> espetaculos;
+    private List<Espetaculo> listaEspetaculos;
     private List<Cliente> clientes;
-    */
 
-    //construtor inicializando como null
     public Teatro() {
-        /* 
-        this.espetaculos = new ArrayList<>();
+        this.listaEspetaculos = new ArrayList<>();
         this.clientes = new ArrayList<>();
         this.carrinhos = new ArrayList<>();
-        */
-        listaEspetaculos = new ArrayList<>();
-        this.carrinho = null;
+        this.carrinhoAtual = null;
         this.espetaculoSelecionado = null;
     }
 
-    //getters
-    public Pedido getCarrinho() {
-        return carrinho;
+    public Pedido getCarrinhoAtual() {
+        return carrinhoAtual;
     }
+
     public Espetaculo getEspetaculoSelecionado() {
         return espetaculoSelecionado;
     }
 
-    public ArrayList<Espetaculo> getListaEspetaculos() {
+    public List<Espetaculo> getListaEspetaculos() {
         return listaEspetaculos;
     }
 
-    /*
     public void adicionarEspetaculo(Espetaculo e) {
-        if (e != null) espetaculos.add(e);
+        if (e != null) listaEspetaculos.add(e);
     }
 
     public void adicionarCliente(Cliente c) {
         if (c != null) clientes.add(c);
     }
-    */
 
     public void novaCompra() {
         this.carrinhoAtual = new Pedido();
@@ -65,18 +53,14 @@ public class Teatro {
     }
 
     public boolean selecionaEspetaculo(int numero) {
-        if (numero < 1 || numero > espetaculos.size()) {
+        if (numero < 1 || numero > listaEspetaculos.size()) {
             return false;
         }
-        this.espetaculoSelecionado = espetaculos.get(numero - 1);
-        novaCompra(); // inicia carrinho para essa compra
+        this.espetaculoSelecionado = listaEspetaculos.get(numero - 1);
+        novaCompra();
         return true;
     }
 
-    /**
-     * Tenta adicionar uma nova entrada ao carrinho atual a partir do espetáculo selecionado.
-     * Retorna true se adicionou; false caso contrário.
-     */
     public boolean novaEntrada(int tipo, int assento) {
         if (espetaculoSelecionado == null || carrinhoAtual == null) {
             return false;
@@ -89,21 +73,21 @@ public class Teatro {
         return true;
     }
 
-    /**
-     * Finaliza compra: associa o pedido ao cliente de cpf informado e retorna o valor total.
-     * Se cliente não encontrado, retorna -1.
-     */
     public double finalizaCompra(String cpf) {
         if (carrinhoAtual == null || carrinhoAtual.isVazio()) {
             return 0.0;
         }
+
         Cliente cliente = encontraClientePorCpf(cpf);
         if (cliente == null) {
             return -1.0;
         }
+
+        carrinhoAtual.setCpfCliente(cpf);
         cliente.adicionaPedido(carrinhoAtual);
         carrinhos.add(carrinhoAtual);
         double total = carrinhoAtual.calculaValorTotal();
+
         carrinhoAtual = null;
         espetaculoSelecionado = null;
         return total;

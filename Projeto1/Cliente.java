@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,12 +7,12 @@ public class Cliente {
     private List<Pedido> pedidos;
 
     public Cliente(String nome, String cpf) {
-        this.nomeC = nome;
+        this.nome = nome;
         this.cpf = cpf;
         this.pedidos = new ArrayList<>();
     }
 
-    //getters
+    // getters
     public String getNome() {
         return nome;
     }
@@ -21,17 +20,19 @@ public class Cliente {
     public String getCpf() {
         return cpf;
     }
-    
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
 
     public void adicionaPedido(Pedido pedido) {
         if (pedido != null && !pedido.isVazio()) {
             pedidos.add(pedido);
         }
     }
-    /* 
+
     @Override
     public String toString() {
-        return nome + " - CPF: " + cpf;
+        return String.format ("Nome : %s \n CPF: %s", getNome(), getCpf());
     }
-    */
 }

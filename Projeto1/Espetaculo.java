@@ -1,25 +1,17 @@
-/*
-Laura Rocha Yaguiu RA:10736399
-Janaína Passos RA: 10737888
-Bárbara Passos RA: 10737885
-*/
-
 public class Espetaculo {
     private String nome;
     private String data;
     private String hora;
     private double preco;
-    private boolean[] assentos; // array simples com 50 posições
+    private boolean[] assentos; // true = disponível, false = ocupado
 
-    //construtor inicializa
     public Espetaculo(String nome, String data, String hora, double preco) {
         this.nome = nome;
         this.data = data;
         this.hora = hora;
         this.preco = preco;
-        this.assentos = new boolean[50]; // já é definido, não é um dado q o cliente coloca
+        this.assentos = new boolean[50];
 
-        // inicializa todos os assentos como disponíveis (true)
         for (int i = 0; i < assentos.length; i++) {
             assentos[i] = true;
         }
@@ -42,12 +34,10 @@ public class Espetaculo {
     public Entrada novaEntrada(int tipo, int numero) {
         if (numero < 1 || numero > 50) return null;
 
-        int indice = 50 - numero;
+        int indice = 50 - numero; // mapeia número do assento ao índice do array
 
-        // aqui verificamos diretamente no array
         if (!assentos[indice]) {
-            // se já estiver ocupado (false), retorna null
-            return null;
+            return null; // já ocupado
         }
 
         Entrada entrada = null;
@@ -65,12 +55,10 @@ public class Espetaculo {
                 return null;
         }
 
-        // marca o assento como ocupado
-        assentos[indice] = false;
+        assentos[indice] = false; // marca ocupado
         return entrada;
     }
 
-    // getters
     public double getPreco() {
         return preco;
     }
@@ -87,15 +75,14 @@ public class Espetaculo {
         return hora;
     }
 
-    // método toString para mostrar informações do espetáculo
-   @Override
+    @Override
     public String toString() {
         return "Espetáculo: " + nome +
                " | Data: " + data +
                " | Hora: " + hora +
                " | Preço da Inteira: R$ " + String.format("%.2f", preco);
     }
-    
+
     public void marcarAssento(int numero) {
         if (numero < 1 || numero > 50) {
             System.out.println("Número de assento inválido!");
@@ -104,6 +91,4 @@ public class Espetaculo {
         int indice = 50 - numero;
         assentos[indice] = false;
     }
-
-    
 }
