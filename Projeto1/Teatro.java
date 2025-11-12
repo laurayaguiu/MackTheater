@@ -111,11 +111,14 @@ public class Teatro {
         // busca cliente
         Cliente cliente = encontraClientePorCpf(cpf);
         if (cliente == null) {
+            for (Entrada e : carrinhoAtual.getEntradas()) {
+            espetaculoSelecionado.desmarcarAssento(e.getNumeroDoAssento());
+            }
             return -1.0;
         }
 
         // associa carrinnho ao cliente
-        carrinhoAtual.setCpfCliente(cpf);
+        carrinhoAtual.setCliente(cliente);
         cliente.adicionaPedido(carrinhoAtual);
 
         // add carrinh a lisa geral

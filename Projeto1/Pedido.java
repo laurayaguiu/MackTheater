@@ -1,21 +1,29 @@
+/*
+Laura Rocha Yaguiu RA:10736399
+Janaína Passos RA: 10737888
+Bárbara Passos RA: 10737885
+*/
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
     private List<Entrada> entradas;
-    private String cpfCliente; // será preenchido ao finalizar
+    private Cliente cliente; //  guarda o objeto Cliente inteiro
 
     public Pedido() {
         this.entradas = new ArrayList<>();
-        this.cpfCliente = "";
+        this.cliente = null; // ainda não tem cliente atribuído
     }
 
+    // Adiciona uma entrada (ingresso) ao pedido
     public void adicionaEntrada(Entrada entrada) {
         if (entrada != null) {
             entradas.add(entrada);
         }
     }
 
+    // Calcula o valor total somando todas as entradas
     public double calculaValorTotal() {
         double total = 0.0;
         for (Entrada e : entradas) {
@@ -24,33 +32,46 @@ public class Pedido {
         return total;
     }
 
+    // Verifica se o pedido está vazio
     public boolean isVazio() {
         return entradas.isEmpty();
     }
 
-    public void setCpfCliente(String cpf) {
-        this.cpfCliente = cpf;
+    // Associa um cliente ao pedido
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public String getCpfCliente() {
-        return cpfCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void mostrarResumo() {
-        System.out.println("\n=== RESUMO DO PEDIDO ===");
-        System.out.println(this.toString());
+    /*devolve a lista de entradas que o pedido guarda internamente*/
+    //questao de desmarcar
+    public List<Entrada> getEntradas() {
+    return entradas;
     }
+
+    
 
     @Override
     public String toString() {
-        StringBuilder texto = new StringBuilder();
+        StringBuilder texto = new StringBuilder(); //objeto especial pra montar textos grandes
+        //mostra entradas compradas - acho q nao precisa
+        /*
         for (Entrada e : entradas) {
             texto.append(e.toString()).append("\n");
         }
+        */
         texto.append(String.format("Total: R$ %.2f", calculaValorTotal()));
-        if (cpfCliente != null && !cpfCliente.isEmpty()) {
-            texto.append("\nCPF do Cliente: ").append(cpfCliente);
+
+        /*
+        if (cliente != null) {
+            texto.append("\nCliente: ").append(cliente.getNome())
+                 .append("\nCPF: ").append(cliente.getCpf());
         }
+        */
+
         return texto.toString();
     }
 }

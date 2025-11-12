@@ -117,4 +117,15 @@ public class Espetaculo {
         int indice = 50 - numero;
         assentos[indice] = false;
     }
+
+    // método para desmarcar assento (liberar)
+    public void desmarcarAssento(int numero) {
+        if (numero < 1 || numero > 50) {
+            System.out.println("Número de assento inválido!");
+            return;
+        }
+        int indice = 50 - numero;
+        assentos[indice] = true;
+    }
+
 }
