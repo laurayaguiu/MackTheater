@@ -1,3 +1,9 @@
+/*
+Laura Rocha Yaguiu RA:10736399
+Janaína Passos RA: 10737888
+Bárbara Passos RA: 10737885
+*/
+
 import java.util.Scanner;
 
 public class Main {
@@ -14,7 +20,7 @@ public class Main {
             System.out.println("4 - Sair");
             System.out.print("Escolha uma opção: ");
             opcao = sc.nextInt();
-            sc.nextLine(); // limpa buffer
+            sc.nextLine(); 
 
             switch (opcao) {
                 case 1:
@@ -27,7 +33,7 @@ public class Main {
                     String hora = sc.nextLine();
                     System.out.print("Preço da Entrada Inteira: ");
                     double preco = sc.nextDouble();
-                    sc.nextLine(); // limpa buffer após nextDouble
+                    sc.nextLine(); 
 
                     Espetaculo novoEspetaculo = new Espetaculo(nome, data, hora, preco);
                     teatro.adicionarEspetaculo(novoEspetaculo);
@@ -80,7 +86,7 @@ public class Main {
                         continuar = sc.next().toLowerCase();
                     } while (continuar.equals("s"));
 
-                    sc.nextLine(); // limpa buffer antes de ler CPF
+                    sc.nextLine();
                     System.out.print("Informe o CPF do Cliente Cadastrado: ");
                     String cpfCliente = sc.nextLine();
                     double total = teatro.finalizaCompra(cpfCliente);
