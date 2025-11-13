@@ -9,15 +9,15 @@ public class Espetaculo {
     private String data;
     private String hora;
     private double preco;
-    private boolean[] assentos; // true = disponível, false = ocupado
+    private boolean[] assentos; 
 
-    //construtor inicializa
+   
     public Espetaculo(String nome, String data, String hora, double preco) {
         this.nome = nome;
         this.data = data;
         this.hora = hora;
         this.preco = preco;
-        this.assentos = new boolean[50]; // já é definido, não é um dado q o cliente coloca
+        this.assentos = new boolean[50]; 
 
          // inicializa todos os assentos como disponíveis (true = disponível) 
         for (int i = 0; i < assentos.length; i++) {
@@ -25,39 +25,33 @@ public class Espetaculo {
         }
     }
 
-    //Mostrar assentos visualmente
+ 
     public void apresentaAssentos() {
         System.out.println("\n ||| Assentos Disponíveis |||");
-        int numero = 50; //quantidade de ass
-        //loop q percorre todos os ass
+        int numero = 50; 
         for (int i = 0; i < assentos.length; i++) {
             if (assentos[i] == true) {
-                // numero formatado com 2 dígitos
                 System.out.printf("%02d ", numero);
             } else {
                 System.out.print("XX ");
             }
             numero--;
-            // a cada 10 pula linha - para mostrar certinho as fileiras
+            // a cada 10 assentos, quebra a linha para simular as fileiras
             if ((i + 1) % 10 == 0) System.out.println();
         }
     }
 
-    // nova entrada
     public Entrada novaEntrada(int tipo, int numero) {
         // validar o número (null = ausência de objeto)
         if (numero < 1 || numero > 50) return null;
 
-        // converter N do ass para indice do arry
-        // EX: o primeiro ass (50) é indice 0
+        //converte o número do assento para o índice do vetor
         int indice = 50 - numero; 
 
-        // validar ass ocupado
         if (assentos[indice] == false) {
             return null; 
         }
 
-        // cria obj entrada, inicialmente sem valor
         Entrada entrada = null;
         switch (tipo) {
             case 1:
@@ -73,8 +67,8 @@ public class Espetaculo {
                 return null;
         }
 
-        // chamada de um método
-        marcarAssento(numero);// marca ocupado
+        
+        marcarAssento(numero);
         return entrada;
     }
 
@@ -95,11 +89,7 @@ public class Espetaculo {
         return hora;
     }
 
-    /*
-   esse toString é sempre override pq vem da classe Object ("mãe de todas as class java")
-   todo objeto java herda o toString automaticamente
-   usamos como método de apoio - exibir informações no console
-   */ 
+  
     @Override
     public String toString() {
         return "Espetáculo " + nome +
@@ -108,7 +98,6 @@ public class Espetaculo {
                " | R$: " + String.format("%.2f", preco);
     }
 
-    // método para marcar ass como ocupado
     public void marcarAssento(int numero) {
         if (numero < 1 || numero > 50) {
             System.out.println("Número de assento inválido!");
@@ -118,7 +107,6 @@ public class Espetaculo {
         assentos[indice] = false;
     }
 
-    // método para desmarcar assento (liberar)
     public void desmarcarAssento(int numero) {
         if (numero < 1 || numero > 50) {
             System.out.println("Número de assento inválido!");
@@ -127,6 +115,5 @@ public class Espetaculo {
         int indice = 50 - numero;
         assentos[indice] = true;
     }
-    
 
 }
