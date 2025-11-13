@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Teatro {
-    private List<Pedido> carrinhos;  //histórico de todas as compras
+
     private Pedido carrinhoAtual; //pedido atual *
     private Espetaculo espetaculoSelecionado; //Espetáculo da compra *
     private List<Espetaculo> listaEspetaculos; //guarda todos os espetáculos 
@@ -17,7 +17,6 @@ public class Teatro {
     public Teatro() {
         this.listaEspetaculos = new ArrayList<>();
         this.clientes = new ArrayList<>();
-        this.carrinhos = new ArrayList<>();
         this.carrinhoAtual = null;
         this.espetaculoSelecionado = null;
     }
@@ -121,9 +120,7 @@ public class Teatro {
         carrinhoAtual.setCliente(cliente);
         cliente.adicionaPedido(carrinhoAtual);
 
-        // add carrinh a lisa geral
-        carrinhos.add(carrinhoAtual);
-
+        
         // calcula valor
         double total = carrinhoAtual.calculaValorTotal();
 
@@ -135,7 +132,7 @@ public class Teatro {
     }
 
     //Procura o cliente dentro da lista clientes comparando o CPF
-    private Cliente encontraClientePorCpf(String cpf) {
+    public Cliente encontraClientePorCpf(String cpf) {
         for (Cliente c : clientes) {
             // verifica se o cpf em questao é igual ao que estou querendo e devolve esse cliente
             if (c.getCpf().equals(cpf)) return c;
