@@ -8,22 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
-    private List<Entrada> entradas;
-    private Cliente cliente; //  guarda o objeto Cliente inteiro
+    private List<Entrada> entradas; //guarda os ingressos comprados no pedido
+    private Cliente cliente; //quem fez a compra
 
     public Pedido() {
         this.entradas = new ArrayList<>();
-        this.cliente = null; // ainda não tem cliente atribuído
+        this.cliente = null;
     }
 
-    // Adiciona uma entrada (ingresso) ao pedido
     public void adicionaEntrada(Entrada entrada) {
         if (entrada != null) {
             entradas.add(entrada);
         }
     }
 
-    // Calcula o valor total somando todas as entradas
     public double calculaValorTotal() {
         double total = 0.0;
         for (Entrada e : entradas) {
@@ -32,7 +30,6 @@ public class Pedido {
         return total;
     }
 
-    // Verifica se o pedido está vazio
     public boolean isVazio() {
         return entradas.isEmpty();
     }
@@ -46,13 +43,10 @@ public class Pedido {
         return cliente;
     }
 
-    /*devolve a lista de entradas que o pedido guarda internamente*/
-    //questao de desmarcar
     public List<Entrada> getEntradas() {
     return entradas;
     }
 
-    
 
     @Override
     public String toString() {
