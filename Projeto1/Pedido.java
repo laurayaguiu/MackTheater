@@ -56,22 +56,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        StringBuilder texto = new StringBuilder(); //objeto especial pra montar textos grandes
-        //mostra entradas compradas - acho q nao precisa
-        /*
-        for (Entrada e : entradas) {
-            texto.append(e.toString()).append("\n");
-        }
-        */
-        texto.append(String.format("Total: R$ %.2f", calculaValorTotal()));
-
-        /*
-        if (cliente != null) {
-            texto.append("\nCliente: ").append(cliente.getNome())
-                 .append("\nCPF: ").append(cliente.getCpf());
-        }
-        */
-
-        return texto.toString();
+    
+        return String.format("Total: R$ %.2f", calculaValorTotal());
     }
 }

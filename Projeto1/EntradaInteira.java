@@ -14,8 +14,5 @@ public class EntradaInteira extends Entrada {
         return precoBase;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Inteira - Assento %d  - R$ %.2f", getNumeroDoAssento(), calculaValor());
-    }
+
 }

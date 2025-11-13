@@ -72,11 +72,9 @@ public class Main {
                         int tipo = sc.nextInt();
 
                         boolean ok = teatro.novaEntrada(tipo, assento);
-                        if (ok) {
-                            System.out.println("Assento " + assento + " reservado com sucesso!");
-                        } else {
-                            System.out.println("Assento inválido ou já ocupado!");
-                        }
+                        if (!ok) {
+                             System.out.println("Inválido, tente novamente!");
+                        } 
 
                         System.out.print("\nDeseja selecionar outro assento? (s/n): ");
                         continuar = sc.next().toLowerCase();

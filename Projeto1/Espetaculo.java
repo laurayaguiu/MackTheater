@@ -102,10 +102,10 @@ public class Espetaculo {
    */ 
     @Override
     public String toString() {
-        return "Espetáculo: " + nome +
+        return "Espetáculo " + nome +
                " | Data: " + data +
                " | Hora: " + hora +
-               " | Preço da Inteira: R$ " + String.format("%.2f", preco);
+               " | R$: " + String.format("%.2f", preco);
     }
 
     // método para marcar ass como ocupado
@@ -127,5 +127,6 @@ public class Espetaculo {
         int indice = 50 - numero;
         assentos[indice] = true;
     }
+    
 
 }

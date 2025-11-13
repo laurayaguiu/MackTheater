@@ -39,8 +39,5 @@ public class Cliente {
         }
     }
 
-    @Override
-    public String toString() {
-        return String.format ("Nome : %s \n CPF: %s", getNome(), getCpf());
-    }
+
 }
