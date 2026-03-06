@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
-    private List<Entrada> entradas; //guarda os ingressos comprados no pedido
-    private Cliente cliente; //quem fez a compra
+    private List<Entrada> entradas; 
+    private Cliente cliente; 
 
     public Pedido() {
         this.entradas = new ArrayList<>();
@@ -28,7 +28,7 @@ public class Pedido {
         return entradas.isEmpty();
     }
 
-    // Associa um cliente ao pedido
+    
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }

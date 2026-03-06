@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
-    private String nome;//*
-    private String cpf;//*
-    private List<Pedido> pedidos; //do cliente em específico
+    private String nome;
+    private String cpf;
+    private List<Pedido> pedidos; 
 
     public Cliente(String nome, String cpf) {
         this.nome = nome;
@@ -12,7 +12,7 @@ public class Cliente {
         this.pedidos = new ArrayList<>();
     }
 
-    // getters
+    
     public String getNome() {
         return nome;
     }
@@ -25,7 +25,7 @@ public class Cliente {
         return pedidos;
     }
 
-    //adicionar uma compra à lista do cliente.
+    
     public void adicionaPedido(Pedido pedido) {
         if (pedido != null && !pedido.isVazio()) {
             pedidos.add(pedido);

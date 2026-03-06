@@ -1,5 +1,4 @@
 
-
 public class Espetaculo {
     private String nome;
     private String data;
@@ -15,7 +14,7 @@ public class Espetaculo {
         this.preco = preco;
         this.assentos = new boolean[50]; 
 
-         // inicializa todos os assentos como disponíveis (true = disponível) 
+          
         for (int i = 0; i < assentos.length; i++) {
             assentos[i] = true;
         }
@@ -32,16 +31,16 @@ public class Espetaculo {
                 System.out.print("XX ");
             }
             numero--;
-            // a cada 10 assentos, quebra a linha para simular as fileiras
+            
             if ((i + 1) % 10 == 0) System.out.println();
         }
     }
 
     public Entrada novaEntrada(int tipo, int numero) {
-        // validar o número (null = ausência de objeto)
+        
         if (numero < 1 || numero > 50) return null;
 
-        //converte o número do assento para o índice do vetor
+        
         int indice = 50 - numero; 
 
         if (assentos[indice] == false) {
@@ -68,7 +67,7 @@ public class Espetaculo {
         return entrada;
     }
 
-    //getters
+    
     public double getPreco() {
         return preco;
     }

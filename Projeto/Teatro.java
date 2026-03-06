@@ -46,8 +46,8 @@ public class Teatro {
             System.out.println("Nenhum espetáculo cadastrado ainda.");
         } else {
             System.out.println("\n=== ESPETÁCULOS CADASTRADOS ===");
-             for (int i = 0; i < listaEspetaculos.size(); i++) { //pega um espetáculo específico da lista 
-                Espetaculo e = listaEspetaculos.get(i); //guarda esse objeto na variável para poder trabalhar com ele dentro do laço
+             for (int i = 0; i < listaEspetaculos.size(); i++) { 
+                Espetaculo e = listaEspetaculos.get(i);
                 System.out.println((i + 1) + " - " + e.toString()); 
             }
         }
@@ -58,7 +58,7 @@ public class Teatro {
             return false;
         }
 
-        ///guarda o espetáculo digitado em espetaculoSelecionado
+        
         this.espetaculoSelecionado = listaEspetaculos.get(numero - 1);
         
         novaCompra();
@@ -70,13 +70,13 @@ public class Teatro {
         if (espetaculoSelecionado == null || carrinhoAtual == null) {
             return false;
         }
-        //Cria uma nova Entrada usando o método da classe Espetaculo
+       
         Entrada entrada = espetaculoSelecionado.novaEntrada(tipo, assento);
        
         if (entrada == null) {
             return false;
         }
-        //adiciona a entrada no pedido atual
+        
         carrinhoAtual.adicionaEntrada(entrada);
         return true;
     }
@@ -87,7 +87,7 @@ public class Teatro {
             return 0.0;
         }
 
-        // busca cliente
+        
         Cliente cliente = encontraClientePorCpf(cpf);
         if (cliente == null) {
             for (Entrada e : carrinhoAtual.getEntradas()) {
@@ -96,7 +96,7 @@ public class Teatro {
             return -1.0;
         }
 
-        // associa carrinnho ao cliente
+        
         carrinhoAtual.setCliente(cliente);
         cliente.adicionaPedido(carrinhoAtual);
 

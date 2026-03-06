@@ -5,7 +5,7 @@ public class EntradaProfessor extends Entrada {
 
     @Override
     public double calculaValor() {
-        return precoBase * 0.4; // professor paga 40% do valor da inteira
+        return precoBase * 0.4; 
     }
 
 }
