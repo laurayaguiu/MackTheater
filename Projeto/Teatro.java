@@ -1,60 +1,121 @@
-/*
-Laura Rocha Yaguiu RA:10736399
-Janaína Passos RA: 10737888
-Bárbara Passos RA: 10737885
-*/
-
-import java.util;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Teatro {
-    private List<Espetaculo> espetaculos = new ArrayList<>();
-    private List<Cliente> clientes = new ArrayList<>();
 
+    private Pedido carrinhoAtual; 
+    private Espetaculo espetaculoSelecionado; 
+    private List<Espetaculo> listaEspetaculos;
+    private List<Cliente> clientes; 
 
-    public void cadastrarEspetaculo() {
-        Scanner input = new Scanner(System.in);
-        
-        System.out.println("\n*** CADASTRO DE ESPETÁCULO ***");
-        
-        System.out.print("Nome do Espetáculo: ");
-        String nome = input.nextLine();
-        
-        System.out.print("Data: ");
-        String data = input.nextLine();
-        
-        System.out.print("Hora: ");
-        String hora = input.nextLine();
-        
-        System.out.print("Preço da Entrada Inteira: ");
-        double preco = input.nextDouble();
-
-        espetaculos.add(new Espetaculo(nome, data, hora, preco));
-        System.out.println("Espetáculo cadastrado!");
+    public Teatro() {
+        this.listaEspetaculos = new ArrayList<>();
+        this.clientes = new ArrayList<>();
+        this.carrinhoAtual = null;
+        this.espetaculoSelecionado = null;
     }
 
-    public void cadastrarCliente() {
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("\n*** CADASTRO DE CLIENTE ***");
-        
-        System.out.print("Nome do Cliente: ");
-        String nome = input.nextLine();
-        
-        System.out.print("CPF: ");
-        String cpf = input.nextLine();
-
-        clientes.add(new Cliente(nome, cpf));
-        System.out.println("Cliente cadastrado!");
+    //getters
+    public Pedido getCarrinhoAtual() {
+        return carrinhoAtual;
     }
 
-    public void compraDeEntradas() {
-        if (espetaculos.size() == 0) {
-            System.out.println("Nenhum espetáculo cadastrado");
-            return;
+    public Espetaculo getEspetaculoSelecionado() {
+        return espetaculoSelecionado;
+    }
+
+    public List<Espetaculo> getListaEspetaculos() {
+        return listaEspetaculos;
+    }
+
+    public void adicionarEspetaculo(Espetaculo novoEspetaculo) {
+        if (novoEspetaculo != null) listaEspetaculos.add(novoEspetaculo);
+    }
+
+    public void adicionarCliente(Cliente novoCliente) {
+        if (novoCliente != null) clientes.add(novoCliente);
+    }
+
+    public void novaCompra() {
+        this.carrinhoAtual = new Pedido();
+    }
+
+    //*
+    public void apresentarEspetaculos() {
+        if (listaEspetaculos.isEmpty()) {
+            System.out.println("Nenhum espetáculo cadastrado ainda.");
+        } else {
+            System.out.println("\n=== ESPETÁCULOS CADASTRADOS ===");
+             for (int i = 0; i < listaEspetaculos.size(); i++) { //pega um espetáculo específico da lista 
+                Espetaculo e = listaEspetaculos.get(i); //guarda esse objeto na variável para poder trabalhar com ele dentro do laço
+                System.out.println((i + 1) + " - " + e.toString()); 
+            }
+        }
+    }
+
+    public boolean selecionaEspetaculo(int numero) {
+        if (numero < 1 || numero > listaEspetaculos.size()) {
+            return false;
         }
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("\n*** VENDA DE ENTRADAS - ESPETÁCULOS ***");
-        for (int i = 0; i < espetaculos.size(); i++) {
-            System.out.println((i + 1) + ") " + espetaculos.get(i));
+        ///guarda o espetáculo digitado em espetaculoSelecionado
+        this.espetaculoSelecionado = listaEspetaculos.get(numero - 1);
+        
+        novaCompra();
+        return true;
+    }
+
+  
+    public boolean novaEntrada(int tipo, int assento) {
+        if (espetaculoSelecionado == null || carrinhoAtual == null) {
+            return false;
         }
+        //Cria uma nova Entrada usando o método da classe Espetaculo
+        Entrada entrada = espetaculoSelecionado.novaEntrada(tipo, assento);
+       
+        if (entrada == null) {
+            return false;
+        }
+        //adiciona a entrada no pedido atual
+        carrinhoAtual.adicionaEntrada(entrada);
+        return true;
+    }
+
+    
+    public double finalizaCompra(String cpf) {
+        if (carrinhoAtual == null || carrinhoAtual.isVazio()) {
+            return 0.0;
+        }
+
+        // busca cliente
+        Cliente cliente = encontraClientePorCpf(cpf);
+        if (cliente == null) {
+            for (Entrada e : carrinhoAtual.getEntradas()) {
+            espetaculoSelecionado.desmarcarAssento(e.getNumeroDoAssento());
+            }
+            return -1.0;
+        }
+
+        // associa carrinnho ao cliente
+        carrinhoAtual.setCliente(cliente);
+        cliente.adicionaPedido(carrinhoAtual);
+
+        
+        
+        double total = carrinhoAtual.calculaValorTotal();
+
+        
+        carrinhoAtual = null;
+        espetaculoSelecionado = null;
+
+        return total;
+    }
+
+   
+    public Cliente encontraClientePorCpf(String cpf) {
+        for (Cliente c : clientes) {
+            if (c.getCpf().equals(cpf)) return c;
+        }
+        return null;
+    }
+}
