@@ -20,3 +20,9 @@
 - Uso de **ArrayList**;
 - Organização de classes e objetos.
 
+## Colaboradores
+- Laura Rocha Yaguiu
+
+- Bárbara Diogo Passos
+
+- Janaína Diogo Passos
